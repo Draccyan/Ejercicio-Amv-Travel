@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ProyectoLogin.Models.Tour>
+
+@{
+    ViewData["Title"] = "ListadoTours";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5>Tours</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="UpsertTour" asp-controller="Tours" asp-route-idTour="0">Crear Nuevo</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Destino</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Precio</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.Destino</td>
+                        <td>@item.FechaInicio.ToString("dd/MM/yyyy")</td>
+                        <td>@item.FechaFin.ToString("dd/MM/yyyy")</td>
+                        <td>@("$" + item.Precio)</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm " asp-action="UpsertTour" asp-controller="Tours" asp-route-idTour="@item.Id"> Editar</a>
+                            <a class="btn btn-danger btn-sm " asp-action="EliminarTour" asp-controller="Tours" asp-route-idTour="@item.Id"> Eliminar</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

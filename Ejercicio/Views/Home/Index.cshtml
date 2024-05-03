@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @ViewData["nombreUsuario"]</h1>
+</div>
+@model IEnumerable<ProyectoLogin.Models.Reserva>
+<div class="card">
+    <div class="card-header">
+        <h5>Lista de reservas</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="Reserva_Detalle" asp-controller="Home" asp-route-idReserva="0">Crear Nueva</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Tour</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Cliente</td>
+                        <td>@item.FechaReserva.ToString("dd/MM/yyyy")</td>
+                        <td>@item.oTour.Nombre</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm " asp-action="Reserva_Detalle" asp-controller="Home" asp-route-idReserva="@item.Id"> Editar</a>
+                            <a class="btn btn-danger btn-sm " asp-action="Eliminar" asp-controller="Home" asp-route-idReserva="@item.Id"> Eliminar</a>
+                        </td>
+                    </tr>
+
+
+
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+

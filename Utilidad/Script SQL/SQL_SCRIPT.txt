@@ -1,0 +1,68 @@
+USE [Ejercicio]
+GO
+/****** Object:  Table [dbo].[Reserva]    Script Date: 2/5/2024 20:48:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Reserva](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Cliente] [varchar](100) NOT NULL,
+	[FechaReserva] [datetime] NOT NULL,
+	[TourId] [int] NOT NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Tour]    Script Date: 2/5/2024 20:48:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Tour](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](100) NOT NULL,
+	[Destino] [varchar](100) NOT NULL,
+	[FechaInicio] [datetime] NOT NULL,
+	[FechaFin] [datetime] NOT NULL,
+	[Precio] [decimal](15, 2) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[USUARIO]    Script Date: 2/5/2024 20:48:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[USUARIO](
+	[IdUsuario] [int] IDENTITY(1,1) NOT NULL,
+	[NombreCompleto] [varchar](50) NULL,
+	[Correo] [varchar](50) NULL,
+	[Clave] [varchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdUsuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Reserva] ON 
+GO
+INSERT [dbo].[Reserva] ([Id], [Cliente], [FechaReserva], [TourId]) VALUES (1, N'Zair', CAST(N'2024-06-01T00:00:00.000' AS DateTime), 2)
+GO
+INSERT [dbo].[Reserva] ([Id], [Cliente], [FechaReserva], [TourId]) VALUES (2, N'Zair', CAST(N'2025-01-02T00:00:00.000' AS DateTime), 1)
+GO
+SET IDENTITY_INSERT [dbo].[Reserva] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Tour] ON 
+GO
+INSERT [dbo].[Tour] ([Id], [Nombre], [Destino], [FechaInicio], [FechaFin], [Precio]) VALUES (1, N'Bariloche', N'Bariloche', CAST(N'2024-06-01T00:00:00.000' AS DateTime), CAST(N'2024-06-08T00:00:00.000' AS DateTime), CAST(100523.00 AS Decimal(15, 2)))
+GO
+INSERT [dbo].[Tour] ([Id], [Nombre], [Destino], [FechaInicio], [FechaFin], [Precio]) VALUES (2, N'Puerto Madryn', N'Madryn', CAST(N'2024-09-01T00:00:00.000' AS DateTime), CAST(N'2024-09-08T00:00:00.000' AS DateTime), CAST(150000.00 AS Decimal(15, 2)))
+GO
+INSERT [dbo].[Tour] ([Id], [Nombre], [Destino], [FechaInicio], [FechaFin], [Precio]) VALUES (4, N'Santa Fe', N'Santa Fe', CAST(N'2024-05-02T00:00:00.000' AS DateTime), CAST(N'2024-06-01T00:00:00.000' AS DateTime), CAST(200000.00 AS Decimal(15, 2)))
+GO
+SET IDENTITY_INSERT [dbo].[Tour] OFF
+GO
+SET IDENTITY_INSERT [dbo].[USUARIO] ON 
+GO
+INSERT [dbo].[USUARIO] ([IdUsuario], [NombreCompleto], [Correo], [Clave]) VALUES (2, N'Zair Mar', N'zair-m@hotmail.com', N'03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4')
+GO
+SET IDENTITY_INSERT [dbo].[USUARIO] OFF
+GO

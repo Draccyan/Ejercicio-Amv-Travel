@@ -1,0 +1,58 @@
+﻿@model ProyectoLogin.Models.ViewModels.ReservaVM;
+@{
+    ViewData["Title"] = "Reserva_Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.oReserva.Id == 0)
+{
+
+    <h1>Crear Reserva</h1>
+}
+else  {
+      <h1>Editar Reserva</h1>
+  }
+
+<div class="row">
+    <div class="col-sm-4">
+
+        <form asp-action="Reserva_Detalle" asp-controller="Home" method="post">
+            <input type="hidden" asp-for="oReserva.Id" />
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oReserva.Cliente">Cliente</label>
+                <input class="form-control form-control-sm" asp-for="oReserva.Cliente" type="text" />
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label" asp-for="oReserva.FechaReserva">Fecha Reserva</label>
+                <input class="form-control form-control-sm" asp-for="oReserva.FechaReserva" type="date" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="oReserva.TourId">Tour</label>
+                <select class="form-select form-select-sm" asp-for="oReserva.TourId" asp-items="@Model.oListaTour">
+                    <option selected disabled>-- Seleccionar --</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                
+                @if (Model.oReserva.Id == 0)
+                {
+                    <button class="btn btn-primary btn-sm w-25" type="submit">Crear</button>
+                }
+                else
+                {
+                     <button class="btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
+
+                }
+                 <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
